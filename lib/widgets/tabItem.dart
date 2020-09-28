@@ -3,7 +3,7 @@ import '../app.dart';
 
 class TabItem {
   // you can customize what kind of information is needed
-  // for each tab
+  // that appears for each tab
   final String tabName;
   final IconData icon;
   final GlobalKey<NavigatorState> key = GlobalKey<NavigatorState>();
@@ -16,9 +16,6 @@ class TabItem {
   }) {
     _page = page;
   }
-
-  // I was getting a weird warning when using getters and setters for _index
-  // so I converted them to functions
 
   // used to set the index of this tab
   // which will be used in identifying if this tab is active
@@ -36,7 +33,7 @@ class TabItem {
       // only paint this page when currentTab is active
       visible: _index == AppState.currentTab,
       // important to preserve state while switching between tabs
-      maintainState: true,
+      maintainState: false,
       child: Navigator(
         // key tracks state changes
         key: key,

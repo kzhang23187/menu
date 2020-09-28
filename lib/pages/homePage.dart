@@ -83,15 +83,53 @@ class _HomePageState extends State<HomePage> {
               // ),
             ),
             Container(
-                child: IconButton(
-                    icon: Icon(Icons.add_circle),
-                    onPressed: () {
-                      setState(() {
-                        dummy.add("chicken");
-                        newItemAdded = true;
-                      });
-                    })),
+              child: IconButton(
+                  icon: Icon(Icons.add_circle),
+                  onPressed: () {
+                    setState(() {
+                      dummy.add("chicken");
+                      newItemAdded = true;
+                    });
+                  }),
+            ),
+            Container(
+              child: FlatButton(
+                child: Text("Push other Settings"),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => NewPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class NewPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'New Screen',
+        ),
+      ),
+      body: Container(
+        child: FlatButton(
+          child: Text("Push new Screen"),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => NewPage(),
+              ),
+            );
+          },
         ),
       ),
     );
