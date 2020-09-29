@@ -7,23 +7,43 @@ class RecipeListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Checkbox(value: false, onChanged: null),
-        Flexible(
-          child: Text(
-            this.recipeName,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20),
+    return Card(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Checkbox(value: false, onChanged: null),
+          Flexible(
+            child: Text(
+              this.recipeName,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20),
+            ),
           ),
-        ),
-        IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () {
-              removeRecipe(recipeName);
-            }),
-      ],
+          IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                removeRecipe(recipeName);
+              }),
+        ],
+      ),
     );
+    // return Row(
+    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //   children: <Widget>[
+    //     Checkbox(value: false, onChanged: null),
+    //     Flexible(
+    //       child: Text(
+    //         this.recipeName,
+    //         textAlign: TextAlign.center,
+    //         style: TextStyle(fontSize: 20),
+    //       ),
+    //     ),
+    //     IconButton(
+    //         icon: Icon(Icons.delete),
+    //         onPressed: () {
+    //           removeRecipe(recipeName);
+    //         }),
+    //   ],
+    // );
   }
 }

@@ -59,21 +59,22 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
+              // color: Colors.grey[200],
               height: 2 * MediaQuery.of(context).size.height / 5,
               child: ListView.builder(
-                controller: _controller,
-                itemCount: dummy.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                      margin: const EdgeInsets.all(3.0),
-                      padding: const EdgeInsets.all(3.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.blue, width: 2)),
-                      child: RecipeListItem(dummy[index], removeRecipe));
-                },
-                // separatorBuilder: (context, index) => Divider(),
-              ),
+                  controller: _controller,
+                  itemCount: dummy.length,
+                  itemBuilder: (context, index) {
+                    return RecipeListItem(dummy[index], removeRecipe);
+                  }
+                  //   return Container(
+                  //       // decoration: BoxDecoration(
+                  //       //     borderRadius: BorderRadius.circular(20),
+                  //       //     border: Border.all(color: Colors.blue, width: 2)),
+                  //       child: RecipeListItem(dummy[index], removeRecipe));
+                  // },
+                  // separatorBuilder: (context, index) => Divider(),
+                  ),
               // child: ListView(
               //   children: <Widget>[
               //     RecipeListItem(),
