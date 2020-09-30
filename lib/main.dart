@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         // Define the default brightness and colors.
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primaryColor: Colors.lightBlue[800],
         accentColor: Colors.cyan[600],
 
@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 // import 'pages/homePage.dart';
 // import 'pages/groceryListPage.dart';
 // import 'pages/profilePage.dart';

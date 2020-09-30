@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:flutter/material.dart';
 import '../widgets/recipeListWidget.dart';
@@ -14,13 +15,22 @@ List<String> dummy = [
 ];
 
 class HomePage extends StatefulWidget {
+  final PanelController panelController;
+
+  const HomePage({Key key, this.panelController}) : super(key: key);
+  PanelController get panelControl {
+    return panelController;
+  }
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  // PanelController panelControl = PanelController();
   final _controller = ScrollController();
   bool newItemAdded = false;
+  String text = 'THIS IS THE INITIAL TEXT';
   void removeRecipe(String name) {
     setState(() {
       dummy.remove(name);
@@ -29,110 +39,114 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(milliseconds: 500), () {
-      if (newItemAdded) {
-        _controller.animateTo(
-          _controller.position.maxScrollExtent,
-          duration: Duration(milliseconds: 500),
-          curve: Curves.fastLinearToSlowEaseIn,
-        );
-        setState(() {
-          newItemAdded = false;
-        });
-      } else {
-        _controller.animateTo(_controller.offset, duration: null, curve: null);
-      }
-    });
-
+    BorderRadiusGeometry radius = BorderRadius.only(
+      topLeft: Radius.circular(24.0),
+      topRight: Radius.circular(24.0),
+    );
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Text(
-                  "Today's Meals",
-                  style: TextStyle(fontSize: 30),
+      body: SlidingUpPanel(
+        controller: widget.panelControl,
+        borderRadius: radius,
+        defaultPanelState: PanelState.CLOSED,
+        maxHeight: MediaQuery.of(context).size.height - 200,
+        minHeight: 3 * MediaQuery.of(context).size.height / 5,
+        panel: Container(
+          decoration: new BoxDecoration(
+            color: Colors.green, //new Color.fromRGBO(255, 0, 0, 0.0),
+            borderRadius: radius,
+          ),
+          child: Column(
+            children: [
+              Icon(Icons.drag_handle),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child:
+                        Text('Breakfast', style: const TextStyle(fontSize: 25)),
+                  ),
+                  IconButton(
+                      iconSize: 25,
+                      icon: Icon(Icons.add_circle_outline),
+                      onPressed: () {}),
+                ],
+              ),
+              Container(
+                alignment: Alignment.centerRight,
+                child: Stack(
+                  alignment: Alignment(-1.3, -2),
+                  children: [
+                    Card(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      shadowColor: Colors.deepOrange,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              bottomLeft: Radius.circular(30),
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(30))),
+                      child: InkWell(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            bottomLeft: Radius.circular(30),
+                            topRight: Radius.zero,
+                            bottomRight: Radius.circular(30)),
+                        splashColor: Colors.blue.withAlpha(30),
+                        onTap: () {},
+                        child: Container(
+                          width: 350,
+                          height: 120,
+                          child:
+                              Center(child: Text('A card that can be tapped')),
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(radius: 55),
+                  ],
                 ),
               ),
-            ),
-            Container(
-              // color: Colors.grey[200],
-              height: 2 * MediaQuery.of(context).size.height / 5,
-              child: ListView.builder(
-                  controller: _controller,
-                  itemCount: dummy.length,
-                  itemBuilder: (context, index) {
-                    return RecipeListItem(dummy[index], removeRecipe);
-                  }
-                  //   return Container(
-                  //       // decoration: BoxDecoration(
-                  //       //     borderRadius: BorderRadius.circular(20),
-                  //       //     border: Border.all(color: Colors.blue, width: 2)),
-                  //       child: RecipeListItem(dummy[index], removeRecipe));
-                  // },
-                  // separatorBuilder: (context, index) => Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: Text('Lunch', style: const TextStyle(fontSize: 25)),
                   ),
-              // child: ListView(
-              //   children: <Widget>[
-              //     RecipeListItem(),
-              //     Text("Taco 2"),
-              //     Text("Taco 3")
-              //   ],
-              // ),
-            ),
-            Container(
-              child: IconButton(
-                  icon: Icon(Icons.add_circle),
-                  onPressed: () {
-                    setState(() {
-                      dummy.add("chicken");
-                      newItemAdded = true;
-                    });
-                  }),
-            ),
-            Container(
-              child: FlatButton(
-                child: Text("Push other Settings"),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => NewPage(),
-                    ),
-                  );
-                },
+                  IconButton(
+                      iconSize: 25,
+                      icon: Icon(Icons.add_circle_outline),
+                      onPressed: () {}),
+                ],
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        body: Container(
+          child: Center(
+            child: Text(''),
+          ),
         ),
       ),
-    );
-  }
-}
 
-class NewPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'New Screen',
-        ),
-      ),
-      body: Container(
-        child: FlatButton(
-          child: Text("Push new Screen"),
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => NewPage(),
-              ),
-            );
-          },
-        ),
-      ),
+      // body: SizedBox.expand(
+      //   child: DraggableScrollableSheet(
+      //     minChildSize: 0.5,
+      //     maxChildSize: 1,
+      //     builder: (BuildContext context, ScrollController scrollController) {
+      //       return Container(
+      //         color: Colors.blue[100],
+      //         child: ListView.builder(
+      //           controller: scrollController,
+      //           itemCount: 25,
+      //           itemBuilder: (BuildContext context, int index) {
+      //             return ListTile(title: Text('Item $index'));
+      //           },
+      //         ),
+      //       );
+      //     },
+      //   ),
+      // ),
     );
   }
 }

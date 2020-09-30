@@ -33,7 +33,7 @@ class TabItem {
       // only paint this page when currentTab is active
       visible: _index == AppState.currentTab,
       // important to preserve state while switching between tabs
-      maintainState: false,
+      maintainState: true,
       child: Navigator(
         // key tracks state changes
         key: key,
