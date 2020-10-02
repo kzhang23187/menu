@@ -12,15 +12,12 @@ class AppState extends State<App> {
   // this is static property so other widget throughout the app
   // can access it simply by AppState.currentTab
   static int currentTab = 0;
-  static PanelController pc = PanelController();
   // list tabs here
   final List<TabItem> tabs = [
     TabItem(
       tabName: "Home",
       icon: Icons.home,
-      page: HomePage(
-        panelController: pc,
-      ),
+      page: HomePage(),
     ),
     TabItem(
       tabName: "Settings",
@@ -86,11 +83,7 @@ class AppState extends State<App> {
       // eventually breaking the app
       child: Scaffold(
         floatingActionButton: new FloatingActionButton(
-          onPressed: () {
-            if (pc.isAttached) {
-              pc.hide();
-            }
-          },
+          onPressed: () {},
           tooltip: 'Increment',
           child: new Icon(Icons.search),
           elevation: 4.0,
