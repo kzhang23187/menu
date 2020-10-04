@@ -22,8 +22,8 @@ environment:
 
 dependencies:
   cached_network_image: ^2.3.2+1
+  animations: ^1.1.2
   auto_size_text: ^2.1.0
-  sliding_up_panel: ^1.0.2
   flutter:
     sdk: flutter
 

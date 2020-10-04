@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import './pages/pages.dart';
 import './widgets/widgets.dart';
 
@@ -84,7 +83,7 @@ class AppState extends State<App> {
       child: Scaffold(
         floatingActionButton: new FloatingActionButton(
           onPressed: () {},
-          tooltip: 'Increment',
+          tooltip: 'Search',
           child: new Icon(Icons.search),
           elevation: 4.0,
         ),

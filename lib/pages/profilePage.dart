@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'pages.dart';
+
 class FourthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,19 +10,17 @@ class FourthPage extends StatelessWidget {
         title: Text('Title'),
       ),
       body: Center(
-        child: Text('fourth'),
-        // child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: <Widget>[
-        //     Text(
-        //       'poopitypoop',
-        //     ),
-        //     Text(
-        //       '$_counter',
-        //       style: Theme.of(context).textTheme.headline4,
-        //     ),
-        //   ],
-        // ),
+        child: Hero(
+            tag: "Breakfast",
+            child: IconButton(
+              icon: Icon(Icons.add_circle),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddMealsPage(meal: "Breakfast")));
+              },
+            )),
       ),
     );
   }

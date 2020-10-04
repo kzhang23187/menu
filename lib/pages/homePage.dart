@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
@@ -32,20 +31,18 @@ class _HomePageState extends State<HomePage> {
         initialChildSize: 0.5,
         builder: (BuildContext context, ScrollController scrollController) {
           return ClipRRect(
+            //to clip widget painting to be in the curved border section
             borderRadius: radius,
             child: Container(
               decoration: new BoxDecoration(
-                color: Colors.grey[300], //new Color.fromRGBO(255, 0, 0, 0.0),
+                color: Colors.grey[300],
                 borderRadius: radius,
               ),
               child: ListView(
                 padding: EdgeInsets.zero,
                 controller: scrollController,
                 children: [
-                  Icon(
-                    Icons.remove,
-                    size: 40,
-                  ),
+                  SizedBox(height: 10),
                   MealSection(
                     meal: 'Breakfast',
                     items: breakfast,

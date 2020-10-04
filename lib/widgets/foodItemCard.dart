@@ -13,7 +13,7 @@ class FoodItemCard extends StatelessWidget {
   final BorderRadius radius = const BorderRadius.only(
       topLeft: Radius.circular(100),
       bottomLeft: Radius.circular(100),
-      topRight: Radius.zero,
+      topRight: Radius.circular(30),
       bottomRight: Radius.circular(30));
 
   List<Color> _getNutritionColors(List<String> nutrition) {
@@ -38,7 +38,7 @@ class FoodItemCard extends StatelessWidget {
         alignment: Alignment(-1.3, -2),
         children: [
           Card(
-            margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+            margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
             shadowColor: Colors.deepOrange,
             shape: RoundedRectangleBorder(borderRadius: radius),
             child: InkWell(
@@ -52,14 +52,38 @@ class FoodItemCard extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 30,
-                      child: ClipOval(
-                        child: CachedNetworkImage(
-                          width: 60,
-                          height: 120,
-                          fit: BoxFit.cover,
-                          imageUrl: meal.imageUrl,
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: new Border.all(
+                            color: Colors.grey[100],
+                            width: 2.0,
+                          ),
+                        ),
+                        // child: ClipRRect(
+                        //   borderRadius: const BorderRadius.only(
+                        //       topLeft: Radius.circular(30),
+                        //       bottomLeft: Radius.circular(30),
+                        //       topRight: Radius.circular(30),
+                        //       bottomRight: Radius.circular(30)),
+                        //   child: CachedNetworkImage(
+                        //     width: 70,
+                        //     height: 140,
+                        //     fit: BoxFit.cover,
+                        //     imageUrl: meal.imageUrl,
+                        //     placeholder: (context, url) =>
+                        //         CircularProgressIndicator(),
+                        //   ),
+                        // ),
+                        child: ClipOval(
+                          child: CachedNetworkImage(
+                            width: 70,
+                            height: 140,
+                            fit: BoxFit.cover,
+                            imageUrl: meal.imageUrl,
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                          ),
                         ),
                       ),
                     ),

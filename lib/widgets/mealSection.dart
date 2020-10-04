@@ -1,6 +1,8 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 import '../models/models.dart';
+import '../pages/pages.dart';
 
 class MealSection extends StatefulWidget {
   final String meal;
@@ -25,8 +27,27 @@ class _MealSectionState extends State<MealSection> {
               child: Text('${this.widget.meal}',
                   style: const TextStyle(fontSize: 35)),
             ),
-            IconButton(
-                iconSize: 40, icon: Icon(Icons.add_circle), onPressed: () {}),
+            Material(
+              type: MaterialType.transparency,
+              child: Hero(
+                  child: IconButton(
+                      icon: Icon(Icons.add_circle),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  AddMealsPage(meal: widget.meal)),
+                        );
+                      }),
+                  tag: widget.meal),
+              // child: IconButton(
+              //     splashColor: Colors.red,
+              //     splashRadius: 20,
+              //     iconSize: 40,
+              //     icon: Icon(Icons.add_circle),
+              //     onPressed: () {}),
+            ),
           ],
         ),
         Container(
