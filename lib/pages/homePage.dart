@@ -4,37 +4,19 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
-
-List<String> dummy = [
-  "taco 1",
-  "taco 2",
-  "taco 3",
-  "taco 4",
-  "taco 5",
-  "taco 6",
-  "taco 7"
-];
+import '../models/models.dart';
+import '../dummyData.dart';
 
 class HomePage extends StatefulWidget {
-  // final ScrollController panelController;
-
-  // const HomePage({Key key, this.panelController}) : super(key: key);
-  // ScrollController get panelControl {
-  //   return panelController;
-  // }
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  // PanelController panelControl = PanelController();
   bool newItemAdded = false;
 
   void removeRecipe(String name) {
-    setState(() {
-      dummy.remove(name);
-    });
+    setState(() {});
   }
 
   @override
@@ -46,25 +28,38 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: DraggableScrollableSheet(
         maxChildSize: 0.8,
-        minChildSize: 0.6,
-        initialChildSize: 0.6,
+        minChildSize: 0.5,
+        initialChildSize: 0.5,
         builder: (BuildContext context, ScrollController scrollController) {
-          return Container(
-            decoration: new BoxDecoration(
-              color: Colors.grey[300], //new Color.fromRGBO(255, 0, 0, 0.0),
-              borderRadius: radius,
-            ),
-            child: ListView(
-              padding: EdgeInsets.zero,
-              controller: scrollController,
-              children: [
-                Icon(
-                  Icons.remove,
-                  size: 40,
-                ),
-                MealSection(meal: 'Breakfast'),
-                MealSection(meal: 'Lunch')
-              ],
+          return ClipRRect(
+            borderRadius: radius,
+            child: Container(
+              decoration: new BoxDecoration(
+                color: Colors.grey[300], //new Color.fromRGBO(255, 0, 0, 0.0),
+                borderRadius: radius,
+              ),
+              child: ListView(
+                padding: EdgeInsets.zero,
+                controller: scrollController,
+                children: [
+                  Icon(
+                    Icons.remove,
+                    size: 40,
+                  ),
+                  MealSection(
+                    meal: 'Breakfast',
+                    items: breakfast,
+                  ),
+                  MealSection(
+                    meal: 'Lunch',
+                    items: lunch,
+                  ),
+                  MealSection(
+                    meal: 'Dinner',
+                    items: dinner,
+                  )
+                ],
+              ),
             ),
           );
         },

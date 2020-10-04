@@ -8,15 +8,11 @@ class NutritionalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         for (var i = 0; i < values.length; i++)
           NutritionIndicator(value: values[i], color: colors[i])
       ],
-      // children: values
-      //     .map((item) =>
-      //         NutritionIndicator(value: values[item], color: colors[item]))
-      //     .toList()
     );
   }
 }
