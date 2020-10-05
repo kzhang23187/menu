@@ -30,16 +30,27 @@ class _MealSectionState extends State<MealSection> {
             Material(
               type: MaterialType.transparency,
               child: Hero(
-                  child: IconButton(
-                      icon: Icon(Icons.add_circle),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  AddMealsPage(meal: widget.meal)),
-                        );
-                      }),
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: IconButton(
+                        splashRadius: 20,
+                        icon: Icon(Icons.add_circle),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (c, a1, a2) =>
+                                  AddMealsPage(meal: widget.meal),
+                              transitionsBuilder: (c, anim, a2, child) =>
+                                  FadeTransition(opacity: anim, child: child),
+                              transitionDuration: Duration(milliseconds: 500),
+                            ),
+                            // MaterialPageRoute(
+                            //     builder: (BuildContext context) =>
+                            //         AddMealsPage(meal: widget.meal)),
+                          );
+                        }),
+                  ),
                   tag: widget.meal),
               // child: IconButton(
               //     splashColor: Colors.red,

@@ -25,41 +25,57 @@ class _HomePageState extends State<HomePage> {
       topRight: Radius.circular(36.0),
     );
     return Scaffold(
-      body: DraggableScrollableSheet(
-        maxChildSize: 0.8,
-        minChildSize: 0.5,
-        initialChildSize: 0.5,
-        builder: (BuildContext context, ScrollController scrollController) {
-          return ClipRRect(
-            //to clip widget painting to be in the curved border section
-            borderRadius: radius,
-            child: Container(
-              decoration: new BoxDecoration(
-                color: Colors.grey[300],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.fastfood), title: Text("Food")),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.fastfood), title: Text("Food"))
+        ],
+      ),
+      body: Stack(
+        children: [
+          Positioned(
+              top: 300, bottom: 150, left: 300, right: 0, child: Text("HELLO")),
+          DraggableScrollableSheet(
+            maxChildSize: 0.8,
+            minChildSize: 0.5,
+            initialChildSize: 0.5,
+            builder: (BuildContext context, ScrollController scrollController) {
+              return ClipRRect(
+                //to clip widget painting to be in the curved border section
                 borderRadius: radius,
-              ),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                controller: scrollController,
-                children: [
-                  SizedBox(height: 10),
-                  MealSection(
-                    meal: 'Breakfast',
-                    items: breakfast,
+                child: Container(
+                  decoration: new BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: radius,
                   ),
-                  MealSection(
-                    meal: 'Lunch',
-                    items: lunch,
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    controller: scrollController,
+                    children: [
+                      SizedBox(height: 10),
+                      MealSection(
+                        meal: 'Breakfast',
+                        items: breakfast,
+                      ),
+                      MealSection(
+                        meal: 'Lunch',
+                        items: lunch,
+                      ),
+                      MealSection(
+                        meal: 'Dinner',
+                        items: dinner,
+                      )
+                    ],
                   ),
-                  MealSection(
-                    meal: 'Dinner',
-                    items: dinner,
-                  )
-                ],
-              ),
-            ),
-          );
-        },
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
 

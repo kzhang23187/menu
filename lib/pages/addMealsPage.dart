@@ -7,7 +7,22 @@ class AddMealsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Hero(child: Icon(Icons.add_circle), tag: meal)),
+      appBar: AppBar(
+        leading: Container(),
+        actions: [
+          Hero(
+              child: Material(
+                type: MaterialType.transparency,
+                child: IconButton(
+                  splashRadius: 20,
+                  icon: Icon(Icons.cancel),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ),
+              tag: meal),
+        ],
+      ),
+      body: Center(child: Text("hi")),
     );
   }
 }
