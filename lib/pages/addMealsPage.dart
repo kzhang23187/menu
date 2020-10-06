@@ -11,6 +11,7 @@ class AddMealsPage extends StatelessWidget {
         leading: Container(),
         actions: [
           Hero(
+              key: UniqueKey(),
               child: Material(
                 type: MaterialType.transparency,
                 child: IconButton(

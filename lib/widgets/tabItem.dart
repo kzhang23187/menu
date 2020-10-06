@@ -42,6 +42,7 @@ class TabItem {
             builder: (_) => _page,
           );
         },
+        observers: [HeroController()],
       ),
     );
   }

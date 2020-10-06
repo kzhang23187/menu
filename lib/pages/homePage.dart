@@ -25,18 +25,8 @@ class _HomePageState extends State<HomePage> {
       topRight: Radius.circular(36.0),
     );
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.teal,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.fastfood), title: Text("Food")),
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.fastfood), title: Text("Food"))
-        ],
-      ),
       body: Stack(
+        // return Stack(
         children: [
           Positioned(
               top: 300, bottom: 150, left: 300, right: 0, child: Text("HELLO")),
@@ -79,24 +69,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-
-    // body: SizedBox.expand(
-    //   child: DraggableScrollableSheet(
-    //     minChildSize: 0.5,
-    //     maxChildSize: 1,
-    //     builder: (BuildContext context, ScrollController scrollController) {
-    //       return Container(
-    //         color: Colors.blue[100],
-    //         child: ListView.builder(
-    //           controller: scrollController,
-    //           itemCount: 25,
-    //           itemBuilder: (BuildContext context, int index) {
-    //             return ListTile(title: Text('Item $index'));
-    //           },
-    //         ),
-    //       );
-    //     },
-    //   ),
-    // ),
   }
 }
