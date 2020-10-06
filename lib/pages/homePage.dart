@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     );
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.teal,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
           BottomNavigationBarItem(
