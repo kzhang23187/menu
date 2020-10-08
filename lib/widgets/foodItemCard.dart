@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:menu/providers/providers.dart';
+import 'package:provider/provider.dart';
 import 'widgets.dart';
 import '../models/models.dart';
 import '../themes.dart';
@@ -9,7 +11,10 @@ final List<String> targetNutrition = ['calories', 'carbs', 'protein', 'fat'];
 double foodItemCardHeight = 130.0;
 
 class FoodItemCard extends StatelessWidget {
-  final FoodItem meal;
+  final FoodItem item;
+  final String meal;
+  final IconData icon;
+  final Function addItem;
   final BorderRadius radius = const BorderRadius.only(
       topLeft: Radius.circular(100),
       bottomLeft: Radius.circular(100),
@@ -29,7 +34,8 @@ class FoodItemCard extends StatelessWidget {
     return values;
   }
 
-  const FoodItemCard({Key key, this.meal}) : super(key: key);
+  const FoodItemCard({Key key, this.item, this.meal, this.icon, this.addItem})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -80,7 +86,7 @@ class FoodItemCard extends StatelessWidget {
                             width: 70,
                             height: 140,
                             fit: BoxFit.cover,
-                            imageUrl: meal.imageUrl,
+                            imageUrl: item.imageUrl,
                             placeholder: (context, url) =>
                                 CircularProgressIndicator(),
                           ),
@@ -97,16 +103,16 @@ class FoodItemCard extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: AutoSizeText(
-                                meal.foodTitle,
+                                item.foodTitle,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 23),
+                                style: Theme.of(context).textTheme.headline5,
                                 maxLines: 2,
                               ),
                             ),
                           ),
                           NutritionalInfo(
                             colors: _getNutritionColors(targetNutrition),
-                            values: _getNutritionValues(meal, targetNutrition),
+                            values: _getNutritionValues(item, targetNutrition),
                           ),
                         ],
                       ),
@@ -117,8 +123,13 @@ class FoodItemCard extends StatelessWidget {
                       child: Center(
                         child: IconButton(
                             alignment: Alignment.bottomLeft,
-                            icon: Icon(Icons.favorite_border),
-                            onPressed: () {}),
+                            icon: Icon(this.icon),
+                            onPressed: () async {
+                              if (this.icon == Icons.add) {
+                                Provider.of<Meals>(context, listen: false)
+                                    .add(this.item, this.meal);
+                              }
+                            }),
                       ),
                     ),
                   ],

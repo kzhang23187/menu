@@ -32,7 +32,7 @@ class NutritionIndicator extends StatelessWidget {
           radius: 7,
         ),
         SizedBox(width: 2),
-        Text('${this.value}'),
+        Text('${this.value}', style: Theme.of(context).textTheme.bodyText1),
         SizedBox(width: 5),
       ],
     );

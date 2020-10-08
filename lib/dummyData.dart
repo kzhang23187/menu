@@ -1,4 +1,4 @@
-import 'models/models.dart';
+import './models/models.dart';
 
 List<FoodItem> breakfast = [
   FoodItem(
@@ -36,7 +36,7 @@ List<FoodItem> dinner = [
           "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/440px-Salad_platter.jpg",
       nutritionValues: {'carbs': 23, 'protein': 23, 'fat': 23, 'calories': 23}),
   FoodItem(
-      foodTitle: "Chicken Caesar Salad",
+      foodTitle: "Chicken Caesar Salad With Thousand Island Dressing",
       imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/440px-Salad_platter.jpg",
       nutritionValues: {'carbs': 13, 'protein': 13, 'fat': 13, 'calories': 13}),

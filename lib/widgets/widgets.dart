@@ -4,3 +4,4 @@ export 'tabItem.dart';
 export 'foodItemCard.dart';
 export 'nutritionIndicator.dart';
 export 'mealSection.dart';
+export 'foodItemList.dart';

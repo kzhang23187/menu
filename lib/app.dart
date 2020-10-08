@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import './providers/meals.dart';
 import './pages/pages.dart';
 import './widgets/widgets.dart';
 
@@ -16,6 +18,10 @@ class AppState extends State<App> {
     TabItem(
       tabName: "Home",
       icon: Icons.home,
+      // page: ChangeNotifierProvider(
+      //   create: (context) => MealsModel(),
+      //   child: HomePage(),
+      // ),
       page: HomePage(),
     ),
     TabItem(

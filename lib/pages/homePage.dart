@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
-import '../models/models.dart';
 import '../dummyData.dart';
 
 class HomePage extends StatefulWidget {

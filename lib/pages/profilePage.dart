@@ -18,7 +18,8 @@ class FourthPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AddMealsPage(meal: "Breakfast")));
+                        builder: (context) =>
+                            AddFoodItemsPage(meal: "Breakfast")));
               },
             )),
       ),

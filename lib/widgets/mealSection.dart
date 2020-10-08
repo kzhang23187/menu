@@ -1,6 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'widgets.dart';
+
+import '../providers/providers.dart';
 import '../models/models.dart';
 import '../pages/pages.dart';
 
@@ -24,8 +27,10 @@ class _MealSectionState extends State<MealSection> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
-              child: Text('${this.widget.meal}',
-                  style: const TextStyle(fontSize: 35)),
+              child: Text(
+                '${this.widget.meal}',
+                style: Theme.of(context).textTheme.headline2,
+              ),
             ),
             Material(
               type: MaterialType.transparency,
@@ -39,8 +44,8 @@ class _MealSectionState extends State<MealSection> {
                           Navigator.push(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (c, a1, a2) =>
-                                  AddMealsPage(meal: widget.meal),
+                              pageBuilder: (c, a1, a2) => AddFoodItemsPage(
+                                  meal: widget.meal, items: widget.items),
                               transitionsBuilder: (c, anim, a2, child) =>
                                   FadeTransition(opacity: anim, child: child),
                               transitionDuration: Duration(milliseconds: 500),
@@ -61,35 +66,9 @@ class _MealSectionState extends State<MealSection> {
             ),
           ],
         ),
-        Container(
-          height: widget.items.length * foodItemCardHeight,
-          alignment: Alignment.centerRight,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: widget.items.length,
-            itemBuilder: (context, index) {
-              final item = widget.items[index];
-              return Dismissible(
-                key: UniqueKey(),
-                direction: DismissDirection.endToStart,
-                onDismissed: (direction) {
-                  setState(() {
-                    widget.items.removeAt(index);
-                  });
-                  Scaffold.of(context).showSnackBar(
-                      SnackBar(content: Text("${item.foodTitle} removed")));
-                },
-                background: Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    color: Colors.red),
-                child: FoodItemCard(meal: widget.items[index]),
-              );
-
-              // return FoodItemCard(meal: widget.items[index]);
-            },
-          ),
-        ),
+        FoodItemList(
+          meal: widget.meal,
+        )
 
         //   child: Column(
         //       //create dynamically with list of recipe items

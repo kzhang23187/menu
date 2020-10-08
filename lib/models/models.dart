@@ -1,1 +1,1 @@
-export './foodItem.dart';
+export 'foodItem.dart';
