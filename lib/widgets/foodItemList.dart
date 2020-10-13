@@ -48,8 +48,6 @@ class FoodItemList extends StatelessWidget {
                   icon: Icons.favorite_border,
                 ),
               );
-
-              // return FoodItemCard(meal: widget.items[index]);
             },
           ),
         );

@@ -27,17 +27,17 @@ class AppState extends State<App> {
     TabItem(
       tabName: "Settings",
       icon: Icons.fastfood,
-      page: ThirdPage(),
+      page: FourthPage(),
     ),
     TabItem(
-      tabName: "Home",
+      tabName: "List",
       icon: Icons.list,
-      page: FourthPage(),
+      page: GroceryListPage(),
     ),
     TabItem(
       tabName: "Settings",
       icon: Icons.portrait,
-      page: ThirdPage(),
+      page: FourthPage(),
     ),
   ];
 

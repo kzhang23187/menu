@@ -23,7 +23,7 @@ class FoodItemCard extends StatelessWidget {
 
   List<Color> _getNutritionColors(List<String> nutrition) {
     List<Color> colors = [];
-    nutrition.forEach((element) => colors.add(nutritionColors[element]));
+    nutrition.forEach((element) => colors.add(Themes.nutritionColors[element]));
     return colors;
   }
 
@@ -99,20 +99,27 @@ class FoodItemCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: AutoSizeText(
-                                item.foodTitle,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline5,
-                                maxLines: 2,
+                          Expanded(
+                            flex: 70,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: AutoSizeText(
+                                  item.foodTitle,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline5,
+                                  maxLines: 3,
+                                ),
                               ),
                             ),
                           ),
-                          NutritionalInfo(
-                            colors: _getNutritionColors(targetNutrition),
-                            values: _getNutritionValues(item, targetNutrition),
+                          Expanded(
+                            flex: 20,
+                            child: NutritionalInfo(
+                              colors: _getNutritionColors(targetNutrition),
+                              values:
+                                  _getNutritionValues(item, targetNutrition),
+                            ),
                           ),
                         ],
                       ),

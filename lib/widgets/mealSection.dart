@@ -69,11 +69,6 @@ class _MealSectionState extends State<MealSection> {
         FoodItemList(
           meal: widget.meal,
         )
-
-        //   child: Column(
-        //       //create dynamically with list of recipe items
-        //       children: [for (var item in items) FoodItemCard(meal: item)]),
-        // ),
       ],
     );
   }

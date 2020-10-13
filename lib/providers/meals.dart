@@ -5,7 +5,7 @@ class Meals extends ChangeNotifier {
   String action = "";
 
   /// Internal, private state of the cart.
-  final List<FoodItem> _breakfastItems = [
+  final List<FoodItem> breakfastItems = [
     FoodItem(
         foodTitle: "Scrambled Eggs with Pepper and Homemade Ketchup",
         imageUrl:
@@ -27,7 +27,7 @@ class Meals extends ChangeNotifier {
           'calories': 120
         }),
   ];
-  final List<FoodItem> _lunchItems = [
+  final List<FoodItem> lunchItems = [
     FoodItem(
         foodTitle: "Sandwich",
         imageUrl:
@@ -49,7 +49,7 @@ class Meals extends ChangeNotifier {
           'calories': 13
         }),
   ];
-  final List<FoodItem> _dinnerItems = [
+  final List<FoodItem> dinnerItems = [
     FoodItem(
         foodTitle: "Lasagna",
         imageUrl:
@@ -72,7 +72,7 @@ class Meals extends ChangeNotifier {
         }),
   ];
 
-  List<FoodItem> _availableItems = [
+  List<FoodItem> availableItems = [
     FoodItem(
         foodTitle: "Lasagna Super Delicious",
         imageUrl:
@@ -96,18 +96,20 @@ class Meals extends ChangeNotifier {
   ];
 
   /// An unmodifiable view of the items in the cart.
-  List<FoodItem> get breakfastItems => _breakfastItems;
+  // List<FoodItem> get breakfastItems => _breakfastItems;
+  // List<FoodItem> get lunchItems => _lunchItems;
+  // List<FoodItem> get dinnerItems => _dinnerItems;
 
   List<FoodItem> getMealsList(String meal) {
     switch (meal) {
       case "Breakfast":
-        return _breakfastItems;
+        return breakfastItems;
       case "Lunch":
-        return _lunchItems;
+        return lunchItems;
       case "Dinner":
-        return _dinnerItems;
+        return dinnerItems;
       case "Available":
-        return _availableItems;
+        return availableItems;
     }
     return null;
   }
@@ -116,17 +118,16 @@ class Meals extends ChangeNotifier {
   void add(FoodItem item, String meal) {
     switch (meal) {
       case "Breakfast":
-        _breakfastItems.add(item);
+        breakfastItems.add(item);
         break;
       case "Lunch":
-        _lunchItems.add(item);
+        lunchItems.add(item);
         break;
       case "Dinner":
-        _dinnerItems.add(item);
+        dinnerItems.add(item);
         break;
     }
     action = "add";
-
     // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
   }
@@ -136,13 +137,13 @@ class Meals extends ChangeNotifier {
     // This call tells the widgets that are listening to this model to rebuild.
     switch (meal) {
       case "Breakfast":
-        _breakfastItems.removeAt(index);
+        breakfastItems.removeAt(index);
         break;
       case "Lunch":
-        _lunchItems.removeAt(index);
+        lunchItems.removeAt(index);
         break;
       case "Dinner":
-        _dinnerItems.removeAt(index);
+        dinnerItems.removeAt(index);
         break;
     }
     action = "remove";

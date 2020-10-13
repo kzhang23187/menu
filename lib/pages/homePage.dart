@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
 import '../dummyData.dart';
+import '../themes.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           Positioned(
               top: 300, bottom: 150, left: 300, right: 0, child: Text("HELLO")),
           DraggableScrollableSheet(
-            maxChildSize: 0.8,
+            maxChildSize: 0.9,
             minChildSize: 0.5,
             initialChildSize: 0.5,
             builder: (BuildContext context, ScrollController scrollController) {
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: radius,
                 child: Container(
                   decoration: new BoxDecoration(
-                    color: Colors.grey[300],
+                    color: Themes.backDrop,
                     borderRadius: radius,
                   ),
                   child: ListView(
@@ -58,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                       MealSection(
                         meal: 'Dinner',
                         items: dinner,
-                      )
+                      ),
+                      SizedBox(height: 10)
                     ],
                   ),
                 ),

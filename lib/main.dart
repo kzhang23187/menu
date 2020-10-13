@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
 
             // Define the default TextTheme. Use this to specify the default
             // text styling for headlines, titles, bodies of text, and more.
-            textTheme: GoogleFonts.quicksandTextTheme(textTheme).copyWith(
+            textTheme:
+                GoogleFonts.architectsDaughterTextTheme(textTheme).copyWith(
               headline2: GoogleFonts.quicksand(
                 textStyle: textTheme.headline2,
                 // fontSize: 35,
@@ -44,9 +45,15 @@ class MyApp extends StatelessWidget {
               //   // fontSize: 35,
               //   // fontWeight: FontWeight.bold,
               // ),
-              bodyText1: GoogleFonts.quicksand(
-                  textStyle: textTheme.bodyText1,
+              headline5: GoogleFonts.architectsDaughter(
+                  textStyle: textTheme.headline5,
+                  fontSize: 35,
                   fontWeight: FontWeight.normal),
+              bodyText1: GoogleFonts.quicksand(
+                fontSize: 15,
+                textStyle: textTheme.bodyText1,
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ),
           home: App(),

@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/widgets.dart';
 import '../providers/providers.dart';
 import '../models/models.dart';
+import '../themes.dart';
 
 class AddFoodItemsPage extends StatefulWidget {
   final String meal;
@@ -19,29 +21,31 @@ class AddFoodItemsPage extends StatefulWidget {
 class _AddFoodItemsPageState extends State<AddFoodItemsPage> {
   @override
   Widget build(BuildContext context) {
-    bool init = true;
     ScrollController _controller = ScrollController();
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey[400],
-        title: Text("${this.widget.meal}",
-            style: Theme.of(context).textTheme.headline2),
-        leading: Container(),
-        actions: [
-          Hero(
-              key: UniqueKey(),
-              child: Material(
-                type: MaterialType.transparency,
-                child: IconButton(
-                  color: Colors.black,
-                  splashRadius: 20,
-                  icon: Icon(Icons.cancel),
-                  onPressed: () => Navigator.of(context).pop(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child: AppBar(
+          backgroundColor: Themes.backDrop,
+          title: Text("${this.widget.meal}",
+              style: Theme.of(context).textTheme.headline2),
+          leading: Container(),
+          actions: [
+            Hero(
+                key: UniqueKey(),
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: IconButton(
+                    color: Colors.black,
+                    splashRadius: 20,
+                    icon: Icon(Icons.cancel),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
                 ),
-              ),
-              tag: widget.meal),
-        ],
+                tag: widget.meal),
+          ],
+        ),
       ),
       body: Column(
         children: [
