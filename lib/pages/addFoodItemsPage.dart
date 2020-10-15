@@ -50,53 +50,39 @@ class _AddFoodItemsPageState extends State<AddFoodItemsPage> {
       body: Column(
         children: [
           SizedBox(height: 20),
+          // Expanded(
+          //     child: FoodItemList(
+          //   meal: this.widget.meal,
+          //   scrollable: true,
+          //   controller: _controller,
+          // )),
+          // Divider(thickness: 2),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Container(
+          //     child: Text("Add to ${this.widget.meal}",
+          //         style: Theme.of(context).textTheme.headline6),
+          //   ),
+          // ),
           Expanded(
-              child: FoodItemList(
-            meal: this.widget.meal,
-            scrollable: true,
-            controller: _controller,
-          )),
-          Divider(thickness: 2),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Text("Add to ${this.widget.meal}",
-                  style: Theme.of(context).textTheme.headline6),
+            child: Consumer<Meals>(
+              builder: (context, meals, model) {
+                List<FoodItem> mealsList = meals.getMealsList("Available");
+                return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: mealsList.length,
+                  itemBuilder: (context, index) {
+                    return FoodItemCard(
+                      item: mealsList[index],
+                      meal: this.widget.meal,
+                      icon: Icons.add,
+                    );
+
+                    // return FoodItemCard(meal: widget.items[index]);
+                  },
+                );
+              },
             ),
-          ),
-          Expanded(
-            child: Consumer<Meals>(builder: (context, meals, model) {
-              if (meals.action == "add") {
-                Timer(Duration(milliseconds: 500), () {
-                  _controller.animateTo(
-                    _controller.position.maxScrollExtent,
-                    duration: Duration(milliseconds: 500),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                  );
-                });
-              }
-
-              // setState(() {
-              //   newItemAdded = false;
-              // });
-              // } else {
-              //   _controller.animateTo(_controller.offset, duration: null, curve: null);
-
-              List<FoodItem> availableMeals = meals.getMealsList("Available");
-              return ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: availableMeals.length,
-                itemBuilder: (context, index) {
-                  return FoodItemCard(
-                    item: availableMeals[index],
-                    meal: this.widget.meal,
-                    icon: Icons.add,
-                  );
-
-                  // return FoodItemCard(meal: widget.items[index]);
-                },
-              );
-            }),
           ),
         ],
       ),

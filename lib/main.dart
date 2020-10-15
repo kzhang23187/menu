@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
             // Define the default brightness and colors.
@@ -33,19 +34,18 @@ class MyApp extends StatelessWidget {
 
             // Define the default TextTheme. Use this to specify the default
             // text styling for headlines, titles, bodies of text, and more.
-            textTheme:
-                GoogleFonts.architectsDaughterTextTheme(textTheme).copyWith(
+            textTheme: GoogleFonts.quicksandTextTheme(textTheme).copyWith(
               headline2: GoogleFonts.quicksand(
                 textStyle: textTheme.headline2,
                 // fontSize: 35,
                 fontWeight: FontWeight.w400,
               ),
-              // headline5: GoogleFonts.quicksand(
-              //   textStyle: textTheme.headline5,
-              //   // fontSize: 35,
-              //   // fontWeight: FontWeight.bold,
-              // ),
-              headline5: GoogleFonts.architectsDaughter(
+              headline6: GoogleFonts.quicksand(
+                textStyle: textTheme.headline5,
+                // fontSize: 35,
+                // fontWeight: FontWeight.bold,
+              ),
+              headline5: GoogleFonts.quicksand(
                   textStyle: textTheme.headline5,
                   fontSize: 35,
                   fontWeight: FontWeight.normal),

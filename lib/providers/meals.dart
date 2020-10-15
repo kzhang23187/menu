@@ -149,4 +149,24 @@ class Meals extends ChangeNotifier {
     action = "remove";
     notifyListeners();
   }
+
+  void removeFoodItemName(FoodItem item, String meal) {
+    // This call tells the widgets that are listening to this model to rebuild.
+    switch (meal) {
+      case "Breakfast":
+        breakfastItems.remove(item);
+        break;
+      case "Lunch":
+        lunchItems.remove(item);
+        break;
+      case "Dinner":
+        dinnerItems.remove(item);
+        break;
+      case "Available":
+        availableItems.remove(item);
+        break;
+    }
+    action = "remove";
+    notifyListeners();
+  }
 }

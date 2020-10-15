@@ -131,10 +131,12 @@ class FoodItemCard extends StatelessWidget {
                         child: IconButton(
                             alignment: Alignment.bottomLeft,
                             icon: Icon(this.icon),
-                            onPressed: () async {
+                            onPressed: () {
                               if (this.icon == Icons.add) {
                                 Provider.of<Meals>(context, listen: false)
                                     .add(this.item, this.meal);
+                                Provider.of<Meals>(context, listen: false)
+                                    .removeFoodItemName(this.item, "Available");
                               }
                             }),
                       ),
