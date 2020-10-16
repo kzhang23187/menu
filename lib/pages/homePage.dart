@@ -2,6 +2,10 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/meals.dart';
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 import '../dummyData.dart';
 import '../themes.dart';
@@ -14,6 +18,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool newItemAdded = false;
   int mealDisplayIndex = 0;
+  final double mealSectionHeight = 216;
+  // List<ScrollController> controllers = [
+  //   ScrollController(),
+  //   ScrollController(),
+  //   ScrollController()
+  // ];
+  ScrollController controller = ScrollController();
 
   void removeRecipe(String name) {
     setState(() {});
@@ -29,19 +40,23 @@ class _HomePageState extends State<HomePage> {
         body: Column(
       children: [
         Expanded(
-          flex: 30,
+          flex: 35,
           child: Container(
             color: Colors.white,
           ),
         ),
         Expanded(
-            flex: 50,
-            child: Container(
-              decoration: new BoxDecoration(
-                color: Themes.backDrop,
-                borderRadius: radius,
-              ),
-              child: Row(
+          flex: 65,
+          child: Container(
+            decoration: new BoxDecoration(
+              color: Themes.backDrop,
+              borderRadius: radius,
+            ),
+            child: Consumer<Meals>(builder: (context, meals, model) {
+              List<FoodItem> breakfast = meals.breakfastItems;
+              List<FoodItem> lunch = meals.lunchItems;
+              List<FoodItem> dinner = meals.dinnerItems;
+              return Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -53,6 +68,11 @@ class _HomePageState extends State<HomePage> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
+                                controller.animateTo(
+                                  0.0,
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 300),
+                                );
                                 mealDisplayIndex = 0;
                               });
                             },
@@ -67,6 +87,11 @@ class _HomePageState extends State<HomePage> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
+                                controller.animateTo(
+                                  breakfast.length * (mealSectionHeight) + 60,
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 300),
+                                );
                                 mealDisplayIndex = 1;
                               });
                             },
@@ -80,6 +105,13 @@ class _HomePageState extends State<HomePage> {
                           flex: 3,
                           child: GestureDetector(
                             onTap: () {
+                              controller.animateTo(
+                                (breakfast.length + lunch.length) *
+                                        (mealSectionHeight) +
+                                    60 * 2,
+                                curve: Curves.easeOut,
+                                duration: const Duration(milliseconds: 300),
+                              );
                               setState(() {
                                 mealDisplayIndex = 2;
                               });
@@ -94,24 +126,60 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                    child: IndexedStack(index: mealDisplayIndex, children: [
-                      MealSection(
-                        meal: 'Breakfast',
-                        items: breakfast,
-                      ),
-                      MealSection(
-                        meal: 'Lunch',
-                        items: lunch,
-                      ),
-                      MealSection(
-                        meal: 'Dinner',
-                        items: dinner,
-                      ),
-                    ]),
+                    child: ClipRRect(
+                      borderRadius: radius,
+                      child: ListView(
+                          controller: controller,
+                          padding: EdgeInsets.all(0.0),
+                          children: [
+                            Container(
+                              height: breakfast.length * mealSectionHeight + 60,
+                              child: MealSection(
+                                meal: 'Breakfast',
+                                items: breakfast,
+                              ),
+                            ),
+                            Container(
+                              height: lunch.length * mealSectionHeight + 60,
+                              child: MealSection(
+                                meal: 'Lunch',
+                                items: lunch,
+                              ),
+                            ),
+                            Container(
+                              height: dinner.length * mealSectionHeight + 60,
+                              child: MealSection(
+                                meal: 'Dinner',
+                                items: dinner,
+                              ),
+                            ),
+                          ]),
+                    ),
                   ),
+                  // Expanded(
+                  //   child: IndexedStack(index: mealDisplayIndex, children: [
+                  //     MealSection(
+                  //       controller: this.controllers[0],
+                  //       meal: 'Breakfast',
+                  //       items: breakfast,
+                  //     ),
+                  //     MealSection(
+                  //       controller: this.controllers[1],
+                  //       meal: 'Lunch',
+                  //       items: lunch,
+                  //     ),
+                  //     MealSection(
+                  //       controller: this.controllers[2],
+                  //       meal: 'Dinner',
+                  //       items: dinner,
+                  //     ),
+                  //   ]),
+                  // ),
                 ],
-              ),
-            )),
+              );
+            }),
+          ),
+        ),
       ],
     )
 //       body: Stack(

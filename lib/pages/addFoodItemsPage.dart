@@ -57,13 +57,13 @@ class _AddFoodItemsPageState extends State<AddFoodItemsPage> {
           //   controller: _controller,
           // )),
           // Divider(thickness: 2),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Container(
-          //     child: Text("Add to ${this.widget.meal}",
-          //         style: Theme.of(context).textTheme.headline6),
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              child: Text("Available Dishes",
+                  style: Theme.of(context).textTheme.headline6),
+            ),
+          ),
           Expanded(
             child: Consumer<Meals>(
               builder: (context, meals, model) {

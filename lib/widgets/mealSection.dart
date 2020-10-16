@@ -10,8 +10,10 @@ import '../pages/pages.dart';
 class MealSection extends StatefulWidget {
   final String meal;
   final List<FoodItem> items;
+  final ScrollController controller;
 
-  const MealSection({Key key, this.meal, this.items}) : super(key: key);
+  const MealSection({Key key, this.meal, this.items, this.controller})
+      : super(key: key);
 
   @override
   _MealSectionState createState() => _MealSectionState();
@@ -22,40 +24,57 @@ class _MealSectionState extends State<MealSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Material(
-              type: MaterialType.transparency,
-              child: Hero(
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: IconButton(
-                        splashRadius: 20,
-                        icon: Icon(Icons.add_circle),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (c, a1, a2) => AddFoodItemsPage(
-                                meal: widget.meal,
-                                items: widget.items,
-                              ),
-                              transitionsBuilder: (c, anim, a2, child) =>
-                                  FadeTransition(opacity: anim, child: child),
-                              transitionDuration: Duration(milliseconds: 500),
-                            ),
-                          );
-                        }),
-                  ),
-                  tag: widget.meal),
-            ),
-          ],
+        Container(
+          // alignment: Alignment.center,
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
+                child: Text(
+                  '${this.widget.meal}',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+              ),
+              Material(
+                type: MaterialType.transparency,
+                child: Hero(
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: IconButton(
+                            splashRadius: 20,
+                            icon: Icon(Icons.add_circle),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (c, a1, a2) => AddFoodItemsPage(
+                                    meal: widget.meal,
+                                  ),
+                                  transitionsBuilder: (c, anim, a2, child) =>
+                                      FadeTransition(
+                                          opacity: anim, child: child),
+                                  transitionDuration:
+                                      Duration(milliseconds: 500),
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+                    tag: widget.meal),
+              ),
+            ],
+          ),
         ),
         Expanded(
           child: FoodItemList(
+            controller: widget.controller,
             meal: widget.meal,
-            scrollable: true,
+            scrollable: false,
+            mealsList: widget.items,
           ),
         ),
       ],

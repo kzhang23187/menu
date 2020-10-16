@@ -91,7 +91,9 @@ class AppState extends State<App> {
           onPressed: () {},
           tooltip: 'Search',
           child: new Icon(Icons.search),
-          elevation: 4.0,
+          elevation: 3.0,
+          hoverElevation: 2,
+          focusElevation: 0,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // indexed stack shows only one child

@@ -48,6 +48,26 @@ class Meals extends ChangeNotifier {
           'fat': 13,
           'calories': 13
         }),
+    FoodItem(
+        foodTitle: "Scrambled Eggs with Pepper and Homemade Ketchup",
+        imageUrl:
+            "https://upload.wikimedia.org/wikipedia/commons/archive/2/20/20140610213944%21Scrambed_eggs.jpg",
+        nutritionValues: {
+          'carbs': 1200,
+          'protein': 24,
+          'fat': 3,
+          'calories': 111
+        }),
+    FoodItem(
+        foodTitle: "Pancakes",
+        imageUrl:
+            "https://upload.wikimedia.org/wikipedia/commons/4/43/Blueberry_pancakes_%283%29.jpg",
+        nutritionValues: {
+          'carbs': 23,
+          'protein': 10,
+          'fat': 6,
+          'calories': 120
+        }),
   ];
   final List<FoodItem> dinnerItems = [
     FoodItem(
@@ -73,6 +93,26 @@ class Meals extends ChangeNotifier {
   ];
 
   List<FoodItem> availableItems = [
+    FoodItem(
+        foodTitle: "Lasagna Super Delicious",
+        imageUrl:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/440px-Salad_platter.jpg",
+        nutritionValues: {
+          'carbs': 23,
+          'protein': 23,
+          'fat': 23,
+          'calories': 23
+        }),
+    FoodItem(
+        foodTitle:
+            "Chicken Caesar Salad With Thousand Island Dressing Super Delicious",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/440px-Salad_platter.jpg",
+        nutritionValues: {
+          'carbs': 13,
+          'protein': 13,
+          'fat': 13,
+          'calories': 13
+        }),
     FoodItem(
         foodTitle: "Lasagna Super Delicious",
         imageUrl:
