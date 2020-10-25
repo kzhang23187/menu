@@ -20,6 +20,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (ctx) => Meals(),
           ),
+          ChangeNotifierProvider(
+            create: (ctx) => MealsPosition(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

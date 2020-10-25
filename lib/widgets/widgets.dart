@@ -6,3 +6,4 @@ export 'nutritionIndicator.dart';
 export 'mealSection.dart';
 export 'foodItemList.dart';
 export 'groceryListItem.dart';
+export 'mealNames.dart';

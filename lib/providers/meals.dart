@@ -210,3 +210,17 @@ class Meals extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class MealsPosition extends ChangeNotifier {
+  int position = 0;
+  bool tabPress = false;
+
+  void setTabPress(val) {
+    tabPress = val;
+  }
+
+  void changePosition(newPosition) {
+    position = newPosition;
+    notifyListeners();
+  }
+}
