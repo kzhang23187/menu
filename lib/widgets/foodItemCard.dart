@@ -103,6 +103,7 @@ class FoodItemCard extends StatelessWidget {
                       IconButton(
                           alignment: Alignment.bottomLeft,
                           icon: Icon(this.icon),
+                          iconSize: 30,
                           onPressed: () {
                             if (this.icon == Icons.add) {
                               Provider.of<Meals>(context, listen: false)
