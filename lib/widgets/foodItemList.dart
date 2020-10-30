@@ -43,12 +43,41 @@ class FoodItemList extends StatelessWidget {
             Scaffold.of(context).showSnackBar(
                 SnackBar(content: Text("${item.foodTitle} removed")));
           },
+          confirmDismiss: (DismissDirection direction) async {
+            return await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text("Confirm"),
+                  content:
+                      const Text("Are you sure you wish to delete this item?"),
+                  actions: <Widget>[
+                    FlatButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: const Text("DELETE")),
+                    FlatButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text("CANCEL"),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
           background: Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 10), color: Colors.red),
+              padding: EdgeInsets.only(right: 20.0),
+              child: Text(
+                "Delete",
+                textAlign: TextAlign.right,
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
+              alignment: Alignment.centerRight,
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              color: Colors.red),
           child: FoodItemCard(
             item: mealsList[index],
             meal: meal,
-            icon: Icons.favorite_border,
+            icon: null,
           ),
         );
       },

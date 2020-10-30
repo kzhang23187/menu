@@ -89,8 +89,8 @@ class AppState extends State<App> {
       child: Scaffold(
         floatingActionButton: new FloatingActionButton(
           onPressed: () {},
-          tooltip: 'Search',
-          child: new Icon(Icons.search),
+          tooltip: 'Add',
+          child: new Icon(Icons.add),
           elevation: 3.0,
           hoverElevation: 2,
           focusElevation: 0,
