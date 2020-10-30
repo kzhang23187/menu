@@ -37,7 +37,7 @@ class AppState extends State<App> {
     TabItem(
       tabName: "Settings",
       icon: Icons.portrait,
-      page: FourthPage(),
+      page: NutritionPage(),
     ),
   ];
 
